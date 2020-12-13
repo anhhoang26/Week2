@@ -44,7 +44,16 @@ module.exports = (sequelize,DataTypes) => {
         type: Sequelize.DataTypes.BIGINT,
       },
       createdAt: DataTypes.DATE,
-      updatedAt: DataTypes.DATE
+      updatedAt: DataTypes.DATE,
+      shop_id : {
+        type: Sequelize.DataTypes.BIGINT,
+        allowNull: false
+      },
+      nosale :{
+        type: Sequelize.DataTypes.BIGINT,
+        allowNull: false,
+        defaultValue: 0
+      }
     },
     {
       sequelize,

@@ -23,3 +23,19 @@ exports.getProductByCategoryId = async (req, res) =>{
 	const productByCategoryId = await productService.getProductByCategoryId(req);
 	return res.json(productByCategoryId);
 }
+exports.getProductByShopId = async (req, res) => {
+	const productByShopId = await productService.getProductByShopId(req);
+	return res.json(productByShopId);
+}
+exports.changeInfoProduct = async (req, res) => {
+	const product = await productService.changeInfoProduct(req);
+	return res.json(product);
+}
+exports.addProduct = async(req, res) => {
+	const newproduct = await productService.addProduct(req);
+	return res.json(newproduct);
+}
+exports.deleteProduct = async (req, res) =>{
+	const product = await productService.deleteProduct(req);
+	return res.json(product);
+}

@@ -28,5 +28,13 @@ router.get('/products/:productId', productController.getProductById);
 router.get('/category/:categoryId', productController.getProductByCategoryId);
 router.post('/products', productController.postProduct);
 router.post('/register', authController.register);
+//Lay toan bo san pham cua shop
+router.get('/shop/:shop_id/product', productController.getProductByShopId);
+//Thay doi thong tin san pham
+router.put('/shop/:shop_id/product/change/:product_id', productController.changeInfoProduct);
+//Them moi product
+router.post('/shop/:shop_id/product/add', productController.addProduct);
+//Xoa san pham
+router.post('/shop/:shop_id/product/delete/:product_id', productController.deleteProduct);
 
 module.exports = router;
