@@ -39,3 +39,7 @@ exports.deleteProduct = async (req, res) =>{
 	const product = await productService.deleteProduct(req);
 	return res.json(product);
 }
+exports.getInfoShopByProductId = async(req,res) =>{
+	const shop = await productService.getInfoShopByProductId(req);
+	return res.json(shop);
+}

@@ -1,7 +1,7 @@
 const { Model } = require('sequelize');
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Orderdetail extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,30 +11,34 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  User.init(
+  Orderdetail.init(
     {
-      user_id :{
+      order_id :{
         type: DataTypes.BIGINT,
         allowNull: false,
-        autoIncrement: true,
-        unique: true,
         primaryKey: true,
       },
-      email: DataTypes.STRING,
-      name: DataTypes.STRING,
-      password: DataTypes.STRING,
-      sex: DataTypes.STRING,
-      DOB: DataTypes.DATE,
-      phonenumber: DataTypes.STRING,
-      avatar: DataTypes.STRING,
+      product_id : {
+        type : DataTypes.BIGINT,
+        allowNull: false,
+        primaryKey: true,
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      priceEach: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+      },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: 'User',
+      modelName: 'Orderdetail',
       freezeTableName: true
     },
   );
-  return User;
+  return Orderdetail;
 };

@@ -5,6 +5,7 @@ const {jwtSecret} = require('../config/constant');
 
 const db = require('../models/index');
 const { Product } = require('../models/index');
+const { Shop } = require('../models/index');
 
 exports.getProducts = async function (req) {
 	if (JSON.stringify(req.params) === '{}')
@@ -131,6 +132,22 @@ exports.deleteProduct = async function(req) {
 		return deleproduct.dataValues;
 	}
 	catch(err) {
+		console.log(err);
+		return null;
+	}
+}
+
+exports.getInfoShopByProductId = async function (req){
+	try{
+		const product = await Product.findByPk(req.params.product_id);
+		const shop = await Shop.findOne({
+			where : {
+				shop_id : product.shop_id
+			}
+		});
+		return shop.dataValues;
+	}
+	catch(err){
 		console.log(err);
 		return null;
 	}

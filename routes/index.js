@@ -4,6 +4,8 @@ const authController = require('../controllers/authController');
 const authValidator = require('../validator/auth');
 const productController = require('../controllers/productController');
 const userController =  require('../controllers/userController');
+//const orderController = require('../controllers/orderController.js');
+const shopController = require('../controllers/shopController.js');
 
 const router = express.Router();
 
@@ -36,5 +38,11 @@ router.put('/shop/:shop_id/product/change/:product_id', productController.change
 router.post('/shop/:shop_id/product/add', productController.addProduct);
 //Xoa san pham
 router.post('/shop/:shop_id/product/delete/:product_id', productController.deleteProduct);
+//Lay cac order cua user
+//router.get('/user/purchase', orderController.getOrderByIdUser);
+//Lay thong tin Shop tu product ID
+router.get('/product/:product_id', productController.getInfoShopByProductId);
 
+//Tao shop moi
+router.post('/register/shop', shopController.addShop);
 module.exports = router;
