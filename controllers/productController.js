@@ -39,7 +39,12 @@ exports.deleteProduct = async (req, res) =>{
 	const product = await productService.deleteProduct(req);
 	return res.json(product);
 }
-exports.getInfoShopByProductId = async(req,res) =>{
+exports.getInfoShopByProductId = async (req,res) =>{
 	const shop = await productService.getInfoShopByProductId(req);
 	return res.json(shop);
+}
+
+exports.getTopSaleByShopId = async (req, res) =>{
+	const listProduct = await productService.getTopSaleByShopId(req);
+	return res.json(listProduct);
 }

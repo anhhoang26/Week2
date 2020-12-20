@@ -152,3 +152,23 @@ exports.getInfoShopByProductId = async function (req){
 		return null;
 	}
 }
+
+exports.getTopSaleByShopId = async function (req) {
+	try{
+		const listProduct = await Product.findAll({
+			where :{
+				shop_id : req.params.shop_id
+			},
+			order :[["nosale","DESC"]],
+			limit : 8
+		});
+		const products = [];
+		for(product of listProduct)
+			products.push(product.dataValues);
+		return products;
+	}
+	catch(err){
+		console.log(err);
+		return null;
+	}
+}

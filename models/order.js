@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.User,{ foreignKey: 'user_id'});
+      this.belongsTo(models.Shop,{ foreignKey: 'shop_id'});
     }
   }
   Order.init(
@@ -21,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       user_id : {
+        type : DataTypes.BIGINT,
+        allowNull: false,
+      },
+      shop_id : {
         type : DataTypes.BIGINT,
         allowNull: false,
       },

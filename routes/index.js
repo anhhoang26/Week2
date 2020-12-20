@@ -4,7 +4,7 @@ const authController = require('../controllers/authController');
 const authValidator = require('../validator/auth');
 const productController = require('../controllers/productController');
 const userController =  require('../controllers/userController');
-//const orderController = require('../controllers/orderController.js');
+const orderController = require('../controllers/orderController.js');
 const shopController = require('../controllers/shopController.js');
 
 const router = express.Router();
@@ -39,10 +39,20 @@ router.post('/shop/:shop_id/product/add', productController.addProduct);
 //Xoa san pham
 router.post('/shop/:shop_id/product/delete/:product_id', productController.deleteProduct);
 //Lay cac order cua user
-//router.get('/user/purchase', orderController.getOrderByIdUser);
+router.get('/user/:user_id/purchase', orderController.getOrderByIdUser);
 //Lay thong tin Shop tu product ID
 router.get('/product/:product_id', productController.getInfoShopByProductId);
 
 //Tao shop moi
 router.post('/register/shop', shopController.addShop);
+//Top Sale theo tung shop
+router.get('/shop/:shop_id/topsales', productController.getTopSaleByShopId);
+
+//Top 10 order gan nhat thep tung shop
+router.get('/shop/:shop_id/recentorder', orderController.getRecentOrderByShopId);
+
+// Update status order
+router.put('/shop/:shop_id/order/:order_id', orderController.changeStatusOrder);
+//Lay toan bo order cua shop
+router.get('/shop/:shop_id/order', orderController.getOrderByShopId);
 module.exports = router;
