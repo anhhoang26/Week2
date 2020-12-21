@@ -16,3 +16,15 @@ exports.changeStatusOrder = async(req, res) =>{
 	const newOrder = await orderService.changeStatusOrder(req);
 	return res.json(newOrder);
 }
+exports.getTotalOrderByShopId = async(req, res) =>{
+	const totalOrder = await orderService.getTotalOrderByShopId(req);
+	return res.json(totalOrder);
+}
+exports.getTotalMoney = async(req, res) =>{
+	const totalMoney = await orderService.getTotalMoney(req);
+	return res.json(totalMoney);
+}
+exports.addOrder = async(req, res) =>{
+	const newOrder = await orderService.addOrder(req);
+	return res.json(newOrder);
+}

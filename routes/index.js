@@ -45,7 +45,7 @@ router.get('/product/:product_id', productController.getInfoShopByProductId);
 
 //Tao shop moi
 router.post('/register/shop', shopController.addShop);
-//Top Sale theo tung shop
+//Top Sale theo tung shop demo
 router.get('/shop/:shop_id/topsales', productController.getTopSaleByShopId);
 
 //Top 10 order gan nhat thep tung shop
@@ -55,4 +55,10 @@ router.get('/shop/:shop_id/recentorder', orderController.getRecentOrderByShopId)
 router.put('/shop/:shop_id/order/:order_id', orderController.changeStatusOrder);
 //Lay toan bo order cua shop
 router.get('/shop/:shop_id/order', orderController.getOrderByShopId);
+//Lay total order shop
+router.get('/shop/:shop_id/totalorder', orderController.getTotalOrderByShopId);
+//Lay total money 
+router.get('/shop/:shop_id/totalMoney', orderController.getTotalMoney);
+//Tao order moi
+router.post('/user/:user_id/checkout', orderController.addOrder);
 module.exports = router;

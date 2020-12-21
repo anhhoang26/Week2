@@ -67,3 +67,42 @@ exports.changeStatusOrder = async function(req){
 		return null;
 	}
 }
+exports.getTotalOrderByShopId = async function(req){
+	try{
+		const totalOrder = await db.sequelize.query(`select count(order_id) as 'total' from shopshop.order where shop_id = ${req.params.shop_id}`,{
+			type : db.sequelize.QueryTypes.SELECT
+		});
+		return totalOrder;
+	}	
+	catch(err){
+		console.log(err);
+		return null;
+	}
+}
+
+exports.getTotalMoney = async function(req) {
+	try{
+		const totalMoney = await db.sequelize.query(`SELECT SUM(quantity*priceEach) as 'total' from shopshop.order o
+				Inner join orderdetail ord ON o.order_id = ord.order_id
+					where shop_id = ${req.params.shop_id}`,{
+					type : db.sequelize.QueryTypes.SELECT	
+				});
+		return totalMoney;
+	}
+	catch(err){
+		console.log(err);
+		return null;
+	}
+}
+exports.addOrder = async function (req) {
+	try {
+		const tmpPro = await db.sequelize.query(`select shop_id from productincart inner join product ON productincart.product_id = product.product_id`,{
+			type : db.sequelize.QueryTypes.SELECT
+		});
+		return tmpPro;
+	}
+	catch(err){
+		console.log(err);
+		return null;
+	}
+}
