@@ -63,4 +63,6 @@ router.get('/shop/:shop_id/totalMoney', orderController.getTotalMoney);
 router.get('/user/:user_id/checkout', orderController.addOrder);
 //Lay total money theo thang
 router.get('/shop/:shop_id/totalMoney/:year/:month', orderController.getMoneyMonth);
+//Laay total order theo thang
+router.get('/shop/:shop_id/totalOrder/:year/:month', orderController.getOrderMonth);
 module.exports = router;

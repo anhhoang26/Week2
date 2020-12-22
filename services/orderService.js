@@ -120,3 +120,15 @@ exports.getMoneyMonth = async function (req) {
 		return null;
 	}
 }
+exports.getOrderMonth = async function (req) {
+	try{
+		const order = await db.sequelize.query(`select count(order_id) as 'total' from shopshop.order o where shop_id = ${req.params.shop_id} and month(o.orderDate) = ${req.params.month} and year(o.orderDate) = ${req.params.year}`,{
+			type : db.sequelize.QueryTypes.SELECT
+		});
+		return order;	
+	}
+	catch(err) {
+		console.log(err);
+		return null;
+	}
+}

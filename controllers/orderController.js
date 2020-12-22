@@ -32,3 +32,7 @@ exports.getMoneyMonth = async(req, res) =>{
 	const money = await orderService.getMoneyMonth(req);
 	return res.json(money);
 }
+exports.getOrderMonth = async(req, res) =>{
+	const order = await orderService.getOrderMonth(req);
+	return res.json(order);
+}
