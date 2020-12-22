@@ -96,10 +96,24 @@ exports.getTotalMoney = async function(req) {
 }
 exports.addOrder = async function (req) {
 	try {
-		const tmpPro = await db.sequelize.query(`select shop_id from productincart inner join product ON productincart.product_id = product.product_id`,{
+		const tmpPro = await db.sequelize.query(`select DISTRINCT shop_id from productincart inner join product ON productincart.product_id = product.product_id`,{
 			type : db.sequelize.QueryTypes.SELECT
 		});
 		return tmpPro;
+	}
+	catch(err){
+		console.log(err);
+		return null;
+	}
+}
+exports.getMoneyMonth = async function (req) {
+	try{
+		const month =  await db.sequelize.query(`SELECT SUM(quantity*priceEach) as 'total' from shopshop.order o
+				Inner join orderdetail ord ON o.order_id = ord.order_id
+					where shop_id = ${req.params.shop_id} and month(o.orderDate) = ${req.params.month} and year(o.orderDate) = ${req.params.year}`,{
+					type : db.sequelize.QueryTypes.SELECT	
+				});
+		return month;
 	}
 	catch(err){
 		console.log(err);

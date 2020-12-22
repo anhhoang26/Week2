@@ -28,3 +28,7 @@ exports.addOrder = async(req, res) =>{
 	const newOrder = await orderService.addOrder(req);
 	return res.json(newOrder);
 }
+exports.getMoneyMonth = async(req, res) =>{
+	const money = await orderService.getMoneyMonth(req);
+	return res.json(money);
+}
